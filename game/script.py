@@ -50,19 +50,27 @@ def refresh(left_top,right_bottom):
     screen = capture_screen(left_top, right_bottom)
     pos = find_template(screen, 'imgs/f5.png')
     pyautogui.click(pos[0] + left_top[0], pos[1] + left_top[1])
-    time.sleep(20)
-    screen = capture_screen(left_top, right_bottom)
-    pos = find_template(screen, 'imgs/game_start.png')
-    pyautogui.click(pos[0] + left_top[0], pos[1] + left_top[1])
-    time.sleep(3)
-    screen = capture_screen(left_top, right_bottom)
-    pos = find_template(screen, 'imgs/wukong.png')
-    pyautogui.click(pos[0] + left_top[0], pos[1] + left_top[1])
-    time.sleep(3)
-    screen = capture_screen(left_top, right_bottom)
-    pos = find_template(screen, 'imgs/buzhoushan.png')
-    pyautogui.click(pos[0] + left_top[0], pos[1] + left_top[1])
-    time.sleep(5)
+    while True:
+        screen = capture_screen(left_top, right_bottom)
+        pos = find_template(screen, 'imgs/game_start.png')
+        if pos is not None:
+            pyautogui.click(pos[0] + left_top[0], pos[1] + left_top[1])
+            break
+    while True:
+        screen = capture_screen(left_top, right_bottom)
+        time.sleep(1)
+        pos = find_template(screen, 'imgs/wukong.png')
+        if pos is not None:
+            pyautogui.click(pos[0] + left_top[0], pos[1] + left_top[1])
+            break
+    while True:
+        screen = capture_screen(left_top, right_bottom)
+        pos = find_template(screen, 'imgs/buzhoushan.png')
+        if pos is not None:
+            time.sleep(1)
+            pyautogui.click(pos[0] + left_top[0], pos[1] + left_top[1])
+            break
+    time.sleep(10)
 def game_end(left_top,right_bottom):
     screen = capture_screen(left_top, right_bottom)
     pos = find_template(screen, 'imgs/game_end.png')
